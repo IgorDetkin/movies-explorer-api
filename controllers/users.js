@@ -5,7 +5,6 @@ const User = require('../models/user');
 const MongoServerError = require('../middlewares/errors/MongoServerError');
 const ValidationError = require('../middlewares/errors/ValidationError');
 const NotFoundError = require('../middlewares/errors/NotFoundError');
-const LoginError = require('../middlewares/errors/LoginError');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -37,6 +36,10 @@ module.exports.updateProfile = (req, res, next) => {
         next(new ValidationError('Переданы некорректные данные при обновлении профиля'));
         return;
       }
+      if (err.name === 'MongoServerError') {
+        next(new MongoServerError('Пользователь с таким email уже существует'));
+        return;
+      }
       next(err);
     });
 };
@@ -52,7 +55,8 @@ module.exports.createUser = (req, res, next) => {
       // data: user
       _id: user._id,
       email: user.email,
-      name: user.name }))
+      name: user.name,
+    }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError('Переданы некорректные данные'));
@@ -72,15 +76,10 @@ module.exports.login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      // const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
-      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' }); // пр15
-      res.send({ token });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
+      res.send({ token }); // Я НЕ ИСПОЛЬЗУЮ КУКИ
     })
     .catch((err) => {
-      if (err.name === 'Error') {
-        next(new LoginError('Неверный логин или пароль'));
-        return;
-      }
       next(err);
     });
 };

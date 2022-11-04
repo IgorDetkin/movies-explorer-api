@@ -22,12 +22,7 @@ const cors = ((req, res, next) => {
     return res.end();
   }
 
-  // if (method === 'OPTIONS') {
-  //   res.header('Access-Control-Allow-Headers', requestHeaders);
-  //   return res.end();
-  // }
-
-  next();
+  return next();
 });
 
 module.exports = { cors };

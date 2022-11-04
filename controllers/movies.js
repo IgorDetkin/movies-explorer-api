@@ -5,14 +5,17 @@ const NotFoundError = require('../middlewares/errors/NotFoundError');
 const NoRulesError = require('../middlewares/errors/NoRulesError');
 
 module.exports.getMovies = (req, res, next) => {
-  Movie.find({})
+  // const owner = req.user._id; // проверить
+  Movie.find({ owner: req.user._id })
     .then((movies) => res.send({ data: movies }))
     .catch((err) => next(err));
 };
 
 module.exports.createMovie = (req, res, next) => {
-  const { country, director, duration, year, description, image,
-    trailerLink, nameRU, nameEN, thumbnail, movieId } = req.body;
+  const {
+    country, director, duration, year, description, image,
+    trailerLink, nameRU, nameEN, thumbnail, movieId,
+  } = req.body;
   Movie.create({
     country,
     director,
@@ -25,7 +28,9 @@ module.exports.createMovie = (req, res, next) => {
     nameEN,
     thumbnail,
     movieId,
-    owner: req.user._id })
+    // movie: req.body, // не понимаю как в этом блоке уйти от деструктуризации.
+    owner: req.user._id,
+  })
     .then((movie) => res.send({ data: movie }))
     .catch((err) => {
       if (err.name === 'ValidationError') {

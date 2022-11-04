@@ -20,7 +20,7 @@ router.post(
       nameRU: Joi.string().required(),
       nameEN: Joi.string().required(),
       thumbnail: Joi.string().required().pattern(regex),
-      movieId: Joi.string().required(),
+      movieId: Joi.number().required(),
     }),
   }),
   createMovie,
