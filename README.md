@@ -1,5 +1,4 @@
 # movies-explorer-api
 
-I took the Wock' to Poland
-I took the Wock' to Poland
-I took the Wock' to Poland
+* backend https://api.beatfilm.learnproject.nomoredomains.icu/
+* ip 158.160.35.15
