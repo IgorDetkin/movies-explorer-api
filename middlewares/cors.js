@@ -1,8 +1,12 @@
 const allowedCors = [
   'https://mesto.learnproject.nomoredomains.icu',
   'http://mesto.learnproject.nomoredomains.icu',
+
   'http://localhost:3000',
   'http://localhost:3001',
+
+  'https://beatfilm.learnproject.nomoredomains.icu',
+  'http://beatfilm.learnproject.nomoredomains.icu'
 ];
 
 const cors = ((req, res, next) => {

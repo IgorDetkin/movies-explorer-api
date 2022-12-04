@@ -37,4 +37,4 @@ app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
 
-// ssh diplom@158.160.35.15
+// ssh diplom@51.250.82.51
