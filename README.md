@@ -1,4 +1,4 @@
-# Серверная часть для проекта Movies-explorer.[Movies-explorer-api](https://api.beatfilm.learnproject.nomoredomains.icu/).
+# Серверная часть для проекта Movies-explorer.[ссылка](https://api.beatfilm.learnproject.nomoredomains.icu/).
 
 ### Что это? 
 Бэкенд для проекта [Movies-explorer](https://beatfilm.learnproject.nomoredomains.icu/)  
