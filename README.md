@@ -1,8 +1,10 @@
 # Серверная часть для проекта Movies-explorer.    
-[movies-explorer-api](https://api.beatfilm.learnproject.nomoredomains.icu/)
+# [movies-explorer-api](https://api.beatfilm.learnproject.nomoredomains.icu/)
 
 ### Что это? 
-Бэкенд для [Movies-explorer](https://beatfilm.learnproject.nomoredomains.icu/)  
+Бэкенд для проекта [Movies-explorer](https://beatfilm.learnproject.nomoredomains.icu/) 
+позволяющего пользователя создавать свой аккаунт,  
+искать фильмы, сохранять их в избранное. 
 
 ### Как это сделано?  
 Бэкенд написан на Node.js с использованием express.js.  
